@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Swift Cheat Sheet</string>
+    <string name="title_note_detail">Swift Note</string>
+    <string name="title_introduction">Introduction</string>
+    <string name="detail_introduction">
+        <![CDATA[
+        <h2>Swift Notes</h2>
+        This app is a collection of notes for the Swift programming language. The notes are simple code examples with
+        little or no explanation, if you require an explanation please download Apple\'s Swift programming guide.
+        <br/>
+        <br/>Note to run the code examples <b>you will need a Mac!</b> All code has been tested in Xcode\'s playgrounds.
+        <br/>
+        <br/><font color="#008400">//To run a code file from the command line</font>
+        <br/>xcrun swift mycode.swift
+        <br/>
+        <br/><i>\u00A92015 Pig Dog Bay<i>
+        ]]>
+    </string>
+    <string name="title_1">Variables</string>
+    <string name="detail_1">
+        <![CDATA[
+        <h2>Variables</h2>
+        Use <i>var</i> to declare a variable, <i>let</> to define a constant
+        <br/>
+        <br/><font color="#008400">//Types</font>
+        <br/>var myInt: Int = 42
+        <br/>var myBool: Bool = true
+        <br/>let myString: String = \"Hi\"
+        <br/>let myDouble: Double = 1.5
+        <br/>
+        <br/><font color="#008400">//Casting</font>
+        <br/>var myDouble2 = Double(myInt)
+        <br/>
+        <br/><font color="#008400">//Type Inference</font>
+        <br/>let anIntValue = 42
+        <br/>let aStringValue = \"Total\"+\" \"+\"Recall\"
+        <br/>let PI = 3.14
+        <br/>
+        <br/><font color="#008400">//Arrays</font>
+        <br/><font color="#008400">//Note, there is no initializer to create a fixed size array</font>
+        <br/>let emptyArray1 = [Int]()
+        <br/>let emptyArray2: [Int] = []
+        <br/>let myArray1: [Int] = [4,5,6]
+        <br/>let myArray2: Array<Int> = [1,2,3]
+        <br/>let myArray3 = [7,8,9]
+        <br/>myArray1[0] = 42
+        <br/>
+        <br/><font color="#008400">//Dictionary</font>
+        <br/>var myDic1 = Dictionary<String,Int>()
+        <br/>var myDic2: Dictionary<String,Int> = [:]
+        <br/>var myDic3 = [String : Int]()
+        <br/>var myDic4: [String : Int] = [:]
+        <br/>var myDic5 = [\"Ace of Spaces\":1980, \"Bomber\":1979]
+        <br/><font color="#008400">//update the key/value</Font>
+        <br/>myDic5[\"Bomber\"]=1978
+        <br/><font color="#008400">//Add new key/value</font>
+        <br/>myDic5[\"Killed By Death\"]=1981
+        ]]>
+    </string>
+    <string name="title_2">Optionals</string>
+    <string name="detail_2">
+        <![CDATA[
+        <h2>Optionals</h2>
+        Optionals are variables that can have a nil value. They are widely used in the framework, String.toInt() returns an optional int where a nil indicates a string that could not be parsed.
+        <br/>
+        <br/>var myOptionalString : String?
+        <br/>myOptionalString = \"I am no longer nil\"
+        <br/>
+        <br/><font color="#008400">//Use ! to get at the variable inside the optional struct</font>
+        <br/>let unWrappedString = myOptionalString!
+        <br/>
+        <br/><font color="#008400">//Implicitly Unwrapped Optional</font>
+        <br/><font color="#008400">//Use the optional like a variable, no need for !</font>
+        <br/>var implicitlyUnwrappedOptional : String!
+        <br/>implicitlyUnwrappedOptional = \"I am expected to be initialized, never nil\"
+        <br/>let noNeedToUnwrap = implicitlyUnwrappedOptional
+        <br/>let thisIsWrapped = implicitlyUnwrappedOptional?
+        <br/>
+        <br/><font color="#008400">//Nil Coalescing Operator ??</font>
+        <br/><font color="#008400">//Provide a default value if optional is nil</font>
+        <br/>var userInput: String?
+        <br/>let filmTitle = userInput ?? \"Robocop\"
+        <br/><font color="#008400">//Since userInput is nil, filmTitle will default to Robocop, yay!</font>
+        <br/>
+        ]]>
+    </string>
+    <string name="title_3">Conditionals</string>
+    <string name="detail_3">
+        <![CDATA[
+        <h2>Conditionals</h2>
+        if / else is fairly standard, but can be combined with let for optionals.
+        <br/>
+        <br/><font color="#008400">//if / else</font>
+        <br/>if music == \"Hard Rock\"
+        <br/>{
+        <br/>\u0009    println(\"Lets Rock!!\")
+        <br/>}
+        <br/>else if music == \"Heavy Metal\"
+        <br/>{
+        <br/>\u0009    println(\"Oh Yeah baby\")
+        <br/>}
+        <br/>else
+        <br/>{
+        <br/>\u0009    println(\"What is this?\")
+        <br/>}
+        <br/>
+        <br/><font color="#008400">//Optional Binding</font>
+        <br/><font color="#008400">//Use this to check if optional has a value or is nil</font>
+        <br/>if let unwrapped = optionalString
+        <br/>{
+        <br/>\u0009    println(\"We have a winner: \\(unwrapped)\")
+        <br/>}
+        <br/>else
+        <br/>{
+        <br/>\u0009    println(\"Got nil here, nada\")
+        <br/>}
+        <br/>
+        <br/><font color="#008400">//Ternary Conditional Operator</font>
+        <br/>let answer = 42
+        <br/>var question = answer==42 ? \"6x7\" : \"Need a bigger computer\"
+        <br/>
+        <font color="#008400">
+        <br/>/*
+        <br/>The switch statement is much more powerful in Swift than in other languages.
+        <br/> -String values can be matched
+        <br/> -No need for break as its implied
+        <br/> -Use the fallthrough statement to fall into the next case
+        <br/> -Default is required unless all cases are covered
+        <br/> -Case statement can match multiple values
+        <br/>*/
+        </font>
+        <br/>
+        <br/>let x = 42
+        <br/>switch x
+        <br/>{
+        <br/>case 0:
+        <br/>\u0009println(\"Look no break\");
+        <br/>case 1:
+        <br/>\u0009println(\"But you can have break\");
+        <br/>\u0009break
+        <br/>case 2:
+        <br/>\u0009println(\"Fall through into next case\")
+        <br/>\u0009fallthrough
+        <br/>case 3:
+        <br/>\u0009println(\"Two will fall through to here\")
+        <br/>case 4,5,6:
+        <br/>\u0009println(\"Multiple values in this case\")
+        <br/>case 40...50:
+        <br/>\u0009println(\"You\'re in range\")
+        <br/>default:
+        <br/>\u0009println(\"You must have a default unless all cases are covered\")
+        <br/>}
+        ]]>
+    </string>
+    <string name="title_4">Loops</string>
+    <string name="detail_4">
+        <![CDATA[
+        <h2>Loops</h2>
+        Standard stuff here, do/while, while, for and for in
+        <br/>
+        <br/>var x = 0
+        <br/>do
+        <br/>{
+        <br/>\u0009println(x++)
+        <br/>} while x&lt;5
+        <br/>
+        <br/>for var i = 0; i&lt;5; i++
+        <br/>{
+        <br/>\u0009println(i)
+        <br/>}
+        <br/>
+        <br/>for j in 0..&lt;5
+        <br/>{
+        <br/>\u0009println(j)
+        <br/>}
+        <br/>
+        <br/>
+        <br/><font color="#008400">//Iterating over a dictionary</font>
+        <br/>let filmsDictionary = [
+        <br/>\u0009\"Terminator\":1984,
+        <br/>\u0009\"Robocop\":1987,
+        <br/>\u0009\"Matrix\":1999 ]
+        <br/>
+        <br/>for (film, year) in filmsDictionary
+        <br/>{
+        <br/>\u0009println(\"\\(film) \\(year)\")
+        <br/>}
+        <br/>
+        <br/><font color="#008400">//Getting the index in an iteration</font>
+        <br/>let quarks = [\"up\", \"down\", \"strange\", \"charm\"]
+        <br/>for (index, name) in enumerate(quarks)
+        <br/>{
+        <br/>\u0009println(\"\\(name) is at index \\(index)\")
+        <br/>}
+        ]]>
+    </string>
+    <string name="title_5">Functions</string>
+    <string name="detail_5">
+        <![CDATA[
+        <h2>Functions</h2>
+        The big difference to other languages is that the return type is specified last. Parameters use the format name : type.
+        <br/>
+        <br/>func yoEarth()
+        <br/>{
+        <br/>\u0009 println(\"Yo! Earth\")
+        <br/>}
+        <br/>
+        <br/>func pixelCount(width: Int, height: Int)->Int
+        <br/>{
+        <br/>\u0009 return width * height
+        <br/>}
+        <br/>pixelCount(320,240)
+        <br/>
+        <br/><font color="#008400">//External and Internal parameter names</font>
+        <br/>func pixelCount2(width w: Int, height h: Int)->Int
+        <br/>{
+        <br/>\u0009 return w * h
+        <br/>}
+        <br/>pixelCount2(width: 640, height: 480)
+        <br/>
+        <br/><font color="#008400">//Externalize parameter names using #</font>
+        <br/>func pixelCount3(#width: Int, #height: Int)->Int
+        <br/>{
+        <br/>\u0009 return width * height
+        <br/>}
+        <br/>pixelCount3(width: 64, height: 48)
+        <br/>
+        <br/><font color="#008400">//default parameter value</font>
+        <br/>func pixelCount4(width: Int, height: Int = 100)->Int
+        <br/>{
+        <br/>\u0009 return width * height
+        <br/>}
+        <br/>pixelCount4(20)
+        <br/>pixelCount4(20, height: 40)
+        <br/>
+        <br/><font color="#008400">//Inout Parameters</font>
+        <br/>func passByReference(inout x : Int)
+        <br/>{
+        <br/>\u0009 x = x * 2;
+        <br/>}
+        <br/>var localVar = 21;
+        <br/>passByReference(&localVar)
+        <br/><font color="#008400">//localVar is now 42</font>
+        <br/>
+        <br/><font color="#008400">//Need to use var if use parameters like variables</font>
+        <br/>func variableParamter(var x: Int)->Int
+        <br/>{
+        <br/>\u0009 x = x * x
+        <br/>\u0009 return x
+        <br/>}
+        <br/>
+        <br/><font color="#008400">//Variadic Parameters</font>
+        <br/>func totalUp(scores: Int...)->Int
+        <br/>{
+        <br/>\u0009 return reduce(scores, 0){$0 + $1}
+        <br/>}
+        <br/>totalUp(2, 4, 8, 9)
+        <br/>
+        <br/>
+        <br/><font color="#008400">//Returning multiple values</font>
+        <br/>func getScores1() -> (a: Int, b: Int, c: Int)
+        <br/>{
+        <br/>\u0009 return (6,18,34)
+        <br/>}
+        <br/>getScores1().b
+        <br/>
+        <br/>func getScores2() -> (Int, Int, Int)
+        <br/>{
+        <br/>\u0009 return (6, 18, 34)
+        <br/>}
+        <br/>getScores2().1
+        ]]>
+    </string>
+    <string name="title_6">Higher Order Functions</string>
+    <string name="detail_6">
+        <![CDATA[
+        <h2>Higher Order Functions</h2>
+		You can pass and return functions in other functions
+        <br/>
+        <br/>func halveMe(x: Int)->Double
+        <br/>{
+        <br/>\u0009 return Double(x) / 2
+        <br/>}
+        <br/>
+        <br/><font color="#008400">//Returning a function</font>
+        <br/>func getFunction()->(Int)->Double
+        <br/>{
+        <br/>\u0009 return halveMe
+        <br/>}
+        <br/>
+        <br/><font color="#008400">//Variable as a function</font>
+        <br/>var myFunc: (Int)->(Double) = halveMe
+        <br/>myFunc(42)
+        <br/>
+        <br/><font color="#008400">//Passing a function</font>
+        <br/>func setFunc(aFunc: (Int)->Double)
+        <br/>{
+        <br/>\u0009 myFunc = aFunc
+        <br/>}
+        <br/>setFunc(halveMe)
+        <br/>
+        <br/><font color="#008400">//outer variables are modified by nested functions</font>
+        <br/>func outerFunc()->Int
+        <br/>{
+        <br/>\u0009 var x = 42
+        <br/>\u0009 func innerFunc1()
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 x++;
+        <br/>\u0009 }
+        <br/>\u0009 innerFunc1();
+        <br/>\u0009 <font color="#008400">//x is now 43</font>
+        <br/>\u0009 return x
+        <br/>}
+		]]>
+    </string>
+    <string name="title_7">Closures</string>
+    <string name="detail_7">
+        <![CDATA[
+        <h2>Closures</h2>
+        Similar to C#\'s anonymous functions / lambda expressions
+        <br/>
+        <br/><font color="#008400">//Reduce combines the elements of an array</font>
+        <br/>let someNumbers = [1 ,2, 7, 9]
+        <br/>let total1 = someNumbers.reduce(0, combine:
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 (num1: Int, num2: Int)->Int in
+        <br/>\u0009 \u0009 return num1 + num2
+        <br/>\u0009 }
+        <br/>)
+        <br/>
+        <br/><font color="#008400">//Using type inference</font>
+        <br/>let total2 = someNumbers.reduce(0, combine:
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 num1, num2->Int in
+        <br/>\u0009 \u0009 return num1 + num2
+        <br/>\u0009 }
+        <br/>)
+        <br/>
+        <br/><font color="#008400">//Implicit returns / Single expression closure</font>
+        <br/>let total3 = someNumbers.reduce(0, combine:
+        <br/>\u0009 {num1, num2 in num1 + num2}
+        <br/>)
+        <br/>
+        <br/><font color="#008400">//Shorthand argument names</font>
+        <br/>let total4 = someNumbers.reduce(0, combine: {$0 + $1})
+        <br/>
+        <br/><font color="#008400">//Trailing closure</font>
+        <br/><font color="#008400">//If func argument is last parameter, can pop the code</font>
+        <br/><font color="#008400">//outside of the () and no need for the param name</font>
+        <br/>let total5 = someNumbers.reduce(0){$0 + $1}
+        <br/>
+        <br/><font color="#008400">//Remove () for single paramter</font>
+        <br/>let reverseOrdered1 = someNumbers.sorted{$0 > $1}
+        <br/>
+        <br/><font color="#008400">//Operators can remove the arguments for boolean results</font>
+        <br/>let reverseOrdered2 = someNumbers.sorted(>)
+        <br/>
+        <br/>
+        ]]>
+    </string>
+    <string name="title_8">Enums</string>
+    <string name="detail_8">
+	<![CDATA[
+		<h2>Enums</h2>
+		Enums in Swift are much more powerful than in other languages, Swift enums are more like classes.
+        <br/>
+        <br/>
+        <br/><font color="#008400">//Simple enum</font>
+        <br/>enum ColorsOfRainbow : Int
+        <br/>{
+        <br/>\u0009 case red,orange,yellow
+        <br/>\u0009 case green,blue,indgo
+        <br/>\u0009 case violet
+        <br/>}
+        <br/>let myColor = ColorsOfRainbow.green
+        <br/>
+        <br/><font color="#008400">//Raw values</font>
+        <br/><font color="#008400">//Int enums have automatically set raw values like C</font>
+        <br/><font color="#008400">//This line returns a value of 3</font>
+        <br/>myColor.rawValue
+        <br/>
+        <br/><font color="#008400">//Setting an enum using an initializer returns an optional value</font>
+        <br/>let red = ColorsOfRainbow(rawValue: 0)
+        <br/>red!.rawValue
+        <br/>
+        <br/><font color="#008400">//Enums can be Int, String, Character, Double or Float</font>
+        <br/>enum StarWarsFilms : String
+        <br/>{
+        <br/>\u0009 case first = \"Star Wars\"
+        <br/>\u0009 case second = \"The Empire Strikes Back\"
+        <br/>\u0009 case third = \"Return of the Jedi\"
+        <br/>}
+        <br/>
+        <br/>var movie = StarWarsFilms(rawValue: \"Star Wars\")
+        <br/><font color="#008400">//The StarWarsFilms? type is inferred here</font>
+        <br/>movie = .second
+        <br/>
+        <br/><font color="#008400">//No need for a default case as all options are covered</font>
+        <br/><font color="#008400">//Note movie is an optional type here, so need the !</font>
+        <br/>switch movie!
+        <br/>{
+        <br/>case .first:
+        <br/>\u0009 \u0009 println(\"Very good\")
+        <br/>case .second:
+        <br/>\u0009 \u0009 println(\"Excellent\")
+        <br/>case .third:
+        <br/>\u0009 \u0009 println(\"Silly\")
+        <br/>}
+        <br/>
+        <br/>
+        <br/><font color="#008400">//Enums can have functions and initializers</font>
+        <br/><font color="#008400">//Enums members can have Associated Values</font>
+        <br/>enum BookReference
+        <br/>{
+        <br/>\u0009 case Isbn(Int, Int, Int, Int, Int)
+        <br/>\u0009 case TitleAndAuthor(title: String, author: String)
+        <br/>\u0009
+        <br/>\u0009 func toString()->String
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 switch self
+        <br/>\u0009 \u0009 {
+        <br/>\u0009 \u0009 case .Isbn(let a, let b, let c, let d, let e):
+        <br/>\u0009 \u0009 \u0009 return \"\\(a)-\\(b)-\\(c)-\\(d)-\\(e)\"
+        <br/>\u0009 \u0009 case .TitleAndAuthor(let title, let author):
+        <br/>\u0009 \u0009 \u0009 return \"\\(title) by \\(author)\"
+        <br/>\u0009 \u0009 }
+        <br/>\u0009 }
+        <br/>}
+        <br/>let book = BookReference.TitleAndAuthor(title: \"Brave New World\", author: \"Aldous Huxley\")
+		]]>
+    </string>
+    <string name="title_9">Structs</string>
+	<string name="detail_9">
+		<![CDATA[
+		<h2>Structs</h2>
+		Structs are typically a grouping for several properties to create a custom type. Statics in Swift can also inherit functionality, implement protocols, have static / instance members and can be mutable.
+        <br/>
+        <br/>struct Gun
+        <br/>{
+        <br/>\u0009 <font color="#008400">//stored properties</font>
+        <br/>\u0009 let name: String
+        <br/>\u0009 let calibre: Double
+        <br/>\u0009
+        <br/>\u0009 <font color="#008400">//static properties</font>
+        <br/>\u0009 static let AK47_CALIBRE = 7.62
+	        <br/>
+        <br/>\u0009 <font color="#008400">//Instance function</font>
+        <br/>\u0009 func toString() ->String
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 return \"\\(name) \\(calibre)\"
+        <br/>\u0009 }
+	        <br/>
+        <br/>\u0009 <font color="#008400">//static function</font>
+        <br/>\u0009 static func createAk47() -> Gun
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 return Gun(name: \"AK-47\", calibre: Gun.AK47_CALIBRE)
+        <br/>\u0009 }
+        <br/>}
+        <br/>let pistol = Gun(name: \"Magnum\", calibre: 0.44)
+        <br/>pistol.toString()
+        <br/>let rifle = Gun.createAk47()
+        <br/>
+        <br/><font color="#008400">//Initialization example</font>
+        <br/>struct Point
+        <br/>{
+        <br/>\u0009 let x : Double
+        <br/>\u0009 let y : Double
+        <br/>\u0009
+        <br/>\u0009 <font color="#008400">//Memberwise initializer are created automatically</font>
+        <br/>\u0009 <font color="#008400">//Use \'_ \' to remove the need to specify the parameter name</font>
+        <br/>\u0009 init (_ x: Double,_ y: Double)
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 self.x=x
+        <br/>\u0009 \u0009 self.y=y
+        <br/>\u0009 }
+        <br/>\u0009
+        <br/>\u0009 <font color="#008400">//Initialization Delegation</font>
+        <br/>\u0009 init(xy: Double)
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 self.init(xy,xy)
+        <br/>\u0009 }
+        <br/>\u0009
+        <br/>\u0009 init()
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 x=0
+        <br/>\u0009 \u0009 y=0
+        <br/>\u0009 }
+        <br/>}
+        <br/><font color="#008400">//Look no x/y parameter names</font>
+        <br/>let pt = Point(5,8)
+        <br/>let pt2 = Point(xy:42)
+        <br/>
+        <br/>
+        <br/><font color="#008400">//Structs can be mutable unlike C#</font>
+        <br/>struct Time
+        <br/>{
+        <br/>\u0009 <font color="#008400">//properties need to vars, as reset changes them</font>
+        <br/>\u0009 var hours: Int
+        <br/>\u0009 var minutes: Int
+        <br/>\u0009
+        <br/>\u0009 mutating func reset()
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 self.hours = 0
+        <br/>\u0009 \u0009 self.minutes = 0
+        <br/>\u0009 }
+        <br/>}
+        <br/><font color="#008400">//Needs to be a var if changing properties</font>
+        <br/>var lunch = Time(hours: 13, minutes: 15)
+        <br/>lunch.reset()
+        ]]>
+    </string>
+    <string name="title_10">OOP Overview</string>
+    <string name="detail_10">
+        <![CDATA[
+        <h2>Object Orientated Programming</h2>
+        The code example here shows most of the OOP you will need.
+        <br/>
+        <br/><font color="#008400">//Interface definition</font>
+        <br/>protocol Watchable
+        <br/>{
+        <br/>\u0009 var title: String {get}
+        <br/>\u0009 func watch()
+        <br/>}
+        <br/>
+        <br/><font color="#008400">//Class Film implements Watchable</font>
+        <br/>class Film : Watchable
+        <br/>{
+        <br/>\u0009 <font color="#008400">//Stored Property with get and set functions</font>
+        <br/>\u0009 var title : String = \"\"
+        <br/>
+        <br/>\u0009 func watch()
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 println(\"You are watching \\(title)\")
+        <br/>\u0009 }
+        <br/>
+        <br/>\u0009 <font color="#008400">//Designated initializer, sets up the object</font>
+        <br/>\u0009 init(title: String)
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 self.title = title
+        <br/>\u0009 }
+        <br/>\u0009
+        <br/>\u0009 <font color="#008400">//Convenience initializer must call a designated initializer</font>
+        <br/>\u0009 convenience init()
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 self.init(title: "Total Recall")
+        <br/>\u0009 }
+        <br/>}
+        <br/>
+        <br/><font color="#008400">//FilmLogger subclasses Film</font>
+        <br/><font color="#008400">//Here we implement the Decorator design pattern</font>
+        <br/>class FilmLogger : Film
+        <br/>{
+        <br/>\u0009 <font color="#008400">//other access modifiers are public and internal (within code module)</font>
+        <br/>\u0009 private let film : Film
+        <br/>
+        <br/>\u0009 override var title : String
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 get
+        <br/>\u0009 \u0009 {
+        <br/>\u0009 \u0009 \u0009 println(\"Getting film title\")
+        <br/>\u0009 \u0009 \u0009 return self.film.title
+        <br/>\u0009 \u0009 }
+        <br/>\u0009 \u0009 set
+        <br/>\u0009 \u0009 {
+        <br/>\u0009 \u0009 \u0009 println(\"Setting film title\")
+        <br/>\u0009 \u0009 \u0009 self.film.title = newValue
+        <br/>\u0009 \u0009 }
+        <br/>\u0009 }
+        <br/>
+        <br/>\u0009 override func watch()
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 \u0009 println(\"Starting film\")
+        <br/>\u0009 \u0009 \u0009 self.film.watch()
+        <br/>\u0009 \u0009 \u0009 println(\"Film finished\")
+        <br/>\u0009 }
+        <br/>\u0009
+        <br/>\u0009 init(film: Film)
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 self.film = film
+        <br/>\u0009 \u0009 <font color="#008400">//Unlike Java, the super class is initialized last</font>
+        <br/>\u0009 \u0009 super.init(title: \"\")
+        <br/>\u0009 }
+        <br/>\u0009
+        <br/>\u0009 <font color="#008400">//Static / class function</font>
+        <br/>\u0009 class func create(title: String) -> Film
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 let film = Film(title: title)
+        <br/>\u0009 \u0009 return FilmLogger(film: film)
+        <br/>\u0009 }
+        <br/>}
+        <br/>
+        <br/>let greatFilm : Watchable = Film(title: \"Scanners\")
+        <br/><font color="#008400">//Use <b>as</b> to downcast Watchable to Film</font>
+        <br/><font color="#008400">//I used Watchable just to demonstrate protocols and downcasting</font>
+        <br/>let decoratedFilm : Watchable = FilmLogger(film: greatFilm as Film)
+        <br/>
+        <br/><font color="#008400">//Using the factory method</font>
+        <br/>let decoreatedFilm2 = FilmLogger.create(\"Conan\")
+        <br/>
+        <br/><font color="#008400">//Checking object type</font>
+        <br/>if decoratedFilm2 is FilmLogger
+        <br/>{
+        <br/>\u0009 println(\"This movie is being logged\")
+        <br/>}
+        ]]>
+        </string>
+    <string name="title_11">Generics</string>
+    <string name="detail_11">
+	    <![CDATA[
+		<h2>Generics</h2>
+		Good news! Swift is very similar to the Java and C# syntax for generics
+        <br/>
+        <br/><font color="#008400">//Generic paramters</font>
+        <br/>func log&lt;T>(x: T)
+        <br/>{
+        <br/>\u0009 println(\"\\(x)\")
+        <br/>}
+        <br/>log(42)
+        <br/>log(\"Spiders\")
+        <br/>
+        <br/>
+        <br/><font color="#008400">//Type constraints</font>
+        <br/>func print&lt;T : Printable>(x: T)
+        <br/>{
+        <br/>\u0009 println(\"\\(x.description)\")
+        <br/>}
+        <br/>print([2,5,8])
+        <br/>
+        <br/>
+        <br/><font color="#008400">//Generic Classes</font>
+        <br/>class CustomArray&lt;T>
+        <br/>{
+        <br/>\u0009 private var array = [T]()
+        <br/>\u0009 var second : T?
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 get
+        <br/>\u0009 \u0009 {
+        <br/>\u0009 \u0009 \u0009 if (array.count&lt;2)
+        <br/>\u0009 \u0009 \u0009 {
+        <br/>\u0009 \u0009 \u0009 \u0009 return nil
+        <br/>\u0009 \u0009 \u0009 }
+        <br/>\u0009 \u0009 \u0009 return array[1]
+        <br/>\u0009 \u0009 }
+        <br/>\u0009 }
+        <br/>\u0009 func add&lt;t>(item: T)
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 array.append(item)
+        <br/>\u0009 }
+        <br/>}
+        <br/>let myarray = CustomArray&lt;Int>()
+        <br/><font color="#008400">//nil is returned here</font>
+        <br/>let second = myarray.second
+        <br/>
+	    ]]>
+    </string>
+    <string name="title_12">Extensions</string>
+<string name="detail_12">
+<![CDATA[
+<h2>Extensions</h2>
+You can add functions, computed properties, subscripts and protocols to any type
+        <br/>
+        <br/><font color="#008400">//Add a function to Int</font>
+        <br/>extension Int
+        <br/>{
+        <br/>\u0009 func loop(action: ()->())
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 for _ in 1...self
+        <br/>\u0009 \u0009 {
+        <br/>\u0009 \u0009 \u0009 action()
+        <br/>\u0009 \u0009 }
+        <br/>\u0009 }
+        <br/>}
+        <br/><font color="#008400">//Call the new function directly on an Int</font>
+        <br/>3.loop{println(\"Beetle Juice\")}
+        <br/>
+        <br/>protocol Loggable
+        <br/>{
+        <br/>\u0009 func log()
+        <br/>}
+        <br/><font color="#008400">//Add a protocol to a type</font>
+        <br/>extension Double: Loggable
+        <br/>{
+        <br/>\u0009 func log()
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 println(\"\\(self)\")
+        <br/>\u0009 }
+        <br/>}
+        <br/>let pi = 3.142
+        <br/>pi.log()
+        <br/>
+        <br/><font color="#008400">//Use convenience when adding init methods</font>
+        <br/>class Star
+        <br/>{
+        <br/>\u0009 let name : String
+        <br/>\u0009 let galaxy : String
+        <br/>\u0009 init(name: String, galaxy: String)
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 self.name = name
+        <br/>\u0009 \u0009 self.galaxy = galaxy
+        <br/>\u0009 }
+        <br/>}
+        <br/>extension Star
+        <br/>{
+        <br/>\u0009 convenience init(name: String)
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 self.init(name: name, galaxy: \"Milky Way\")
+        <br/>\u0009 }
+        <br/>}
+        <br/>
+        <br/>
+        <br/><font color="#008400">//add subscripts and a stored property</font>
+        <br/>extension String
+        <br/>{
+        <br/>\u0009 <font color="#008400">//add a computed instance property</font>
+        <br/>\u0009 var bytes : [Byte]
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 var byteArray = [Byte]()
+        <br/>\u0009 \u0009 for c in self.utf8
+        <br/>\u0009 \u0009 {
+        <br/>\u0009 \u0009 \u0009 byteArray.append(c)
+        <br/>\u0009 \u0009 }
+        <br/>\u0009 \u0009 return byteArray
+        <br/>\u0009 }
+        <br/>\u0009 <font color="#008400">//return the char at index i</font>
+        <br/>\u0009 subscript(i: Int) -> Character
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 let index = advance(self.startIndex, i)
+        <br/>\u0009 \u0009 return self[index]
+        <br/>\u0009 }
+        <br/>\u0009 <font color="#008400">//return the string in specified range</font>
+        <br/>\u0009 subscript (r: Range<Int>) -> String
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 return substringWithRange(
+        <br/>\u0009 \u0009 \u0009 Range(start: advance(startIndex, r.startIndex),
+        <br/>\u0009 \u0009 \u0009 end: advance(startIndex, r.endIndex)))
+        <br/>\u0009 }
+        <br/>}
+        <br/>let myStr = \"Strings are missing lots of functionality\"
+        <br/>myStr[3]\u0009 \u0009 \u0009 <font color="#008400">//outputs r</font>
+        <br/>myStr[1...5]\u0009 \u0009 <font color="#008400">//outputs tring</font>
+]]>
+</string>
+    <string name="title_13">Optional Chaining</string>
+<string name="detail_13">
+<![CDATA[
+<h2>Optional Chaining</h2>
+The optional chaining operator (?.) will always return an optional value and
+the result will be nil if any nils were returned somewhere in the chain of calls.
+<br/>There\'s no try-catch or exceptions in Swift, so instead of throwing exceptions use optionals to return nil
+<br/>
+        <br/>class Quark
+        <br/>{
+        <br/>\u0009 var name: String
+        <br/>\u0009 var spin: Double = 0.5
+        <br/>\u0009 init(name: String)
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 self.name = name
+        <br/>\u0009 }
+        <br/>\u0009 func reverseSpin()
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 spin = -spin
+        <br/>\u0009 }
+        <br/>\u0009 <font color="#008400">//Return an optional if you need to indicate an error</font>
+        <br/>\u0009 func getAntiParticle()->Quark?
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 <font color="#008400">//too dangerous</font>
+        <br/>\u0009 \u0009 return nil
+        <br/>\u0009 }
+        <br/>}
+        <br/>class Baryon
+        <br/>{
+        <br/>\u0009 var quarks : [Quark]?
+        <br/>}
+        <br/>class Nucleus
+        <br/>{
+        <br/>\u0009 var baryons : [Baryon]?
+        <br/>}
+        <br/><font color="#008400">//No crash! quarkName is nil</font>
+        <br/>var quarkName = Nucleus().baryons?.first?.quarks?.first?.name
+        <br/>
+        <br/><font color="#008400">//return nil here</font>
+        <br/>var result: ()? = Nucleus().baryons?.first?.quarks?.first?.reverseSpin()
+        <br/>if result != nil
+        <br/>{
+        <br/>\u0009 println(\"is ok\")
+        <br/>}
+        <br/>else
+        <br/>{
+        <br/>\u0009 println(\"not ok\")
+        <br/>}
+        <br/>
+        <br/>let hydrogen = Nucleus()
+        <br/>let proton = Baryon()
+        <br/>let quarkUp1 = Quark(name: \"up\")
+        <br/>let quarkUp2 = Quark(name: \"up\")
+        <br/>let quarkDown1 = Quark(name: \"down\")
+        <br/>proton.quarks = [quarkUp1,quarkUp2,quarkDown1]
+        <br/>hydrogen.baryons = [proton]
+        <br/>
+        <br/>quarkName = hydrogen.baryons?.first?.quarks?.first?.name
+        <br/><font color="#008400">//result returns Void?</font>
+        <br/>result = hydrogen.baryons?.first?.quarks?.first?.reverseSpin()
+        <br/>if result != nil
+        <br/>{
+        <br/>\u0009 println(\"is ok\")
+        <br/>}
+        <br/>else
+        <br/>{
+        <br/>\u0009 println(\"not ok\")
+        <br/>}
+        <br/>
+        <br/>let antimatter = hydrogen.baryons?.first?.quarks?.first?.getAntiParticle()
+        <br/>if antimatter == nil
+        <br/>{
+        <br/>\u0009 println(\"No antimatter soup for you!\")
+        <br/>}\u0009 \u0009
+]]>
+</string>
+    <string name="title_14">ARC</string>
+<string name="detail_14">
+<![CDATA[
+<h2>Array Reference Counting</h2>
+ARC - counts each reference to an object, when reference count is 0, deinit is called and object is deallocated
+<br/>
+<br/>Tip! Do not use playgrounds to test, instead
+<br/>compile and run your code the command line:
+<br/>xcrun swift mycode.swift
+        <br/>
+        <br/><font color="#008400">//Use weak to avoid Strong Reference Cycles</font>
+        <br/>class Master
+        <br/>{
+        <br/>\u0009 let name: String
+        <br/>\u0009 <font color="#008400">//if object only has weak references then it is deallocated</font>
+        <br/>\u0009 <font color="#008400">//a weak variable must be optional</font>
+        <br/>\u0009 weak var slave : Slave?
+        <br/>\u0009
+        <br/>\u0009 init (name: String)
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 self.name = name
+        <br/>\u0009 \u0009 println(\"Master \\(name) init\")
+        <br/>\u0009 }
+        <br/>\u0009 deinit
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 println(\"Master \\(name) deinit\")
+        <br/>\u0009 }
+        <br/>}
+        <br/>
+        <br/>class Slave
+        <br/>{
+        <br/>\u0009 let name: String
+        <br/>\u0009 let master : Master
+        <br/>\u0009
+        <br/>\u0009 init (name: String, master: Master)
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 self.name = name
+        <br/>\u0009 \u0009 self.master = master
+        <br/>\u0009 \u0009 println(\"Slave \\(name) init\")
+        <br/>\u0009 }
+        <br/>\u0009 deinit
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 println(\"Slave \\(name) deinit\")
+        <br/>\u0009 }
+        <br/>}
+        <br/>var master : Master?
+        <br/>var slave : Slave?
+        <br/>master = Master(name: \"Biggus Diccus\")
+        <br/>slave = Slave(name: \"Lurcio\", master: master!)
+        <br/>master!.slave = slave
+        <br/><font color="#008400">//Setting var to nil, removes an ARC count</font>
+        <br/><font color="#008400">//so hopefully it will get cleaned up</font>
+        <br/>master = nil
+        <br/>slave = nil
+        <br/>
+        <br/>
+        <br/><font color="#008400">/*
+        <br/>Unowned references
+        <br/>must not be nil, non-optional
+        <br/>they are not strong so do affect reference count
+        <br/>use unowned when reference life cycle is same as the class
+        <br/>use weak if the reference may change/become nil during classes life cycle
+        <br/>*/</font>
+        <br/>class ClassA
+        <br/>{
+        <br/>\u0009 var x: Int
+        <br/>\u0009 let b: ClassB!
+        <br/>\u0009 init()
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 <font color="#008400">//Initialize properties before passing self</font>
+        <br/>\u0009 \u0009 x=42
+        <br/>\u0009 \u0009 self.b = ClassB(a: self)
+        <br/>\u0009 \u0009 println(\"A init\")
+        <br/>\u0009 }
+        <br/>\u0009 deinit
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 println(\"A deinit\")
+        <br/>\u0009 }
+        <br/>}
+        <br/>class ClassB
+        <br/>{
+        <br/>\u0009  unowned let a: ClassA
+        <br/>\u0009  init(a: ClassA)
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 self.a = a
+        <br/>\u0009 \u0009 println(\"B init\")
+        <br/>\u0009 }
+        <br/>\u0009 deinit
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 println(\"B deinit\")
+        <br/>\u0009 }
+        <br/>}
+        <br/>var a :ClassA? = ClassA()
+        <br/>a = nil
+        <br/>
+        <br/><font color="#008400">/*
+        <br/>Closure Capture Lists
+        <br/>Closures hold strong references by default,
+        <br/>so need to make any self references as unowned
+        <br/>Closed capture lists use the following syntax before a closure:
+        <br/>[weak/unowned var1, weak/unowned var2]
+        <br/>*/</font>
+        <br/>import Foundation
+        <br/>class EfficientMath
+        <br/>{
+        <br/>\u0009 let number: Double
+        <br/>\u0009 private var preCalculatedSquareRoot : Double?
+        <br/>
+        <br/>\u0009 <font color="#008400">//Strong reference cycle between class and closure</font>
+        <br/>\u0009 <font color="#008400">//unless self is made unowned</font>
+        <br/>\u0009 <font color="#008400">//Note: need to use lazy as referencing self which is</font>
+        <br/>\u0009 <font color="#008400">//not available until the class has initialized</font>
+        <br/>\u0009 lazy var squareRoot: () -> Double =
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 <font color="#008400">//this line is critical if the class is to deinitialized</font>
+        <br/>\u0009 \u0009 [unowned self] in
+        <br/>\u0009 \u0009 if self.preCalculatedSquareRoot == nil
+        <br/>\u0009 \u0009 {
+        <br/>\u0009 \u0009 \u0009 println(\"First and only time calculation\")
+        <br/>\u0009 \u0009 \u0009 self.preCalculatedSquareRoot = sqrt(self.number)
+        <br/>\u0009 \u0009 }
+        <br/>\u0009 \u0009 return self.preCalculatedSquareRoot!
+        <br/>\u0009 }
+        <br/>
+        <br/>\u0009 init (number: Double)
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 println(\"initializing...\")
+        <br/>\u0009 \u0009 self.number = number
+        <br/>\u0009 }
+        <br/>\u0009 deinit
+        <br/>\u0009 {
+        <br/>\u0009 \u0009 println(\"deinitializing...\")
+        <br/>\u0009 }
+        <br/>}
+        <br/>var efficientMath : EfficientMath? = EfficientMath(number: 2)
+        <br/>println(efficientMath!.squareRoot())
+        <br/>println(efficientMath!.squareRoot())
+        <br/>efficientMath = nil
+]]>
+</string>
+
+</resources>
